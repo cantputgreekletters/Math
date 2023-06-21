@@ -42,7 +42,9 @@ You can use a line in the Draw Class
 
 ## Draw(fig = plt.figure()) <a name="Draw"></a>
 self.Plot = plt
+
 self.fig = fig
+
 self.ax = self.fig.add_subplot(1,1,1)
 
 This class has various methods that are used to draw shapes using matplotlib.
@@ -61,18 +63,30 @@ You can pass an infinite amount of objects of the class Vector2 and visualize th
 
 ## Statistics(List) <a name="Statistics"></a>
 self.items = List
+
 self.Mean = self.__mean()
+
 self.Median = self.__median()
+
 self.Mode = self.__mode()
+
 self.StandardDeviation = self.__standard_dev()
+
 self.Min,self.Max = self.__MinMax()
+
 self.plt = plt
+
 self.fig = self.plt.figure()
+
 self.ax1 = self.fig.add_subplot(2,1,1)
+
 self.ax2 = self.fig.add_subplot(2,1,2)
+
 ### Statistics.Graph()
 Displays a graph that includes some statistical data of the list.
+
 The user can customize further and show the graph by using the "Statistics.fig", "Statistics.ax1" and "Statistics.ax2" attributes.
+
 use -> Statistics.plt.show() to display the graph if you haven't imported matplotlib.
 # Functions <a name="Functions"></a>
 ### Sum(i,n,func) <a name="Sum"></a>
