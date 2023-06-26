@@ -206,6 +206,30 @@ def Sum(i:int,n:int,func):
         s += func(j)
     return s
 
+def Factorial(n):
+    """Returns the factorial of given number."""
+    fact = 1
+    for i in range (1,n+1):
+        fact *= i
+    return fact
+    
+
+def Choose(n,k):
+    """Returns the binomial coefficient of n and k"""
+    return Factorial(n) / (Factorial(k) * Factorial(n - k))
+
+def BinomialProbability(n,x,p):
+    """
+    Returns the Binomial Probability of n, x and p where:
+
+    The number of trials, denoted by 'n'.
+    
+    The probability of success on each trial, denoted by 'p'.
+    
+    The desired number of successes, denoted by 'x'.
+    """
+    return (Choose(n,x)) * (p**x) * ((1 - p)**(n - x))
+
 """
 Python already has MOD "%" :)
 def MOD(Dividend,Divisor):

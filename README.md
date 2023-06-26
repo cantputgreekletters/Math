@@ -1,17 +1,20 @@
-1. [Math](#Math)
-2. [Classes](#Classes)
-    1. [Vector2](#Vector2)
-    2. [Line](#Line)
-    3. [Draw](#Draw)
-        1. [Draw.Line](#Draw.Line)
-        2. [Draw.Triangle](#Draw.Triangle)
-        3. [Draw.Square](#Draw.Square)
-        4. [Draw.Point](#DrawPoint)
-    4. [Statistics](#Statistics)
-        1.[Statistics.Graph](#Statistics.Graph)
-3. [Functions](#Functions)
-    1. [Sum](#Sum)
-    2. [MOD](#MOD)
+1. [ Math ](#Math)
+2. [ Classes ](#Classes)
+    1. [ Vector2 ](#Vector2)
+    2. [ Line ](#Line)
+    3. [ Draw ](#Draw)
+        1. [ Draw.Line ](#Draw.Line)
+        2. [ Draw.Triangle ](#Draw.Triangle)
+        3. [ Draw.Square ](#Draw.Square)
+        4. [ Draw.Point ](#DrawPoint)
+    4. [ Statistics ](#Statistics)
+        1.[ Statistics.Graph ](#Statistics.Graph)
+3. [ Functions ](#Functions)
+    1. [ Sum ](#Sum)
+    2. [ MOD ](#MOD)
+    3. [ Facotrial ](#Factorial)
+    4. [ Choose ](#Choose)
+    5. [ BinomialProbability ](#BinomialProbability)
 # Math <a name="Math"></a>
  Various Math functions and classes that one might want to use. This "Library" is made mostly for fun other than to be actually used.
 
@@ -96,3 +99,20 @@ i,n need to be int
 
 'func' example: def F(x): return x^2
 
+### Factorial(n) <a name="Factorial"></a>
+
+Returns the factorial of given number.
+
+### Choose(n,k) <a name="Choose"></a>
+
+Returns the binomial coefficient of n and k.
+
+### BinomialProbability(n,x,p) <a name="BinomialProbability"></a>
+
+Returns the Binomial Probability of n, x and p where:
+
+The number of trials, denoted by 'n'.
+
+The probability of success on each trial, denoted by 'p'.
+
+The desired number of successes, denoted by 'x'.
