@@ -7,14 +7,20 @@
         2. [ Draw.Triangle ](#Draw.Triangle)
         3. [ Draw.Square ](#Draw.Square)
         4. [ Draw.Point ](#DrawPoint)
-    4. [ Statistics ](#Statistics)
-        1.[ Statistics.Graph ](#Statistics.Graph)
+    
 3. [ Functions ](#Functions)
     1. [ Sum ](#Sum)
     2. [ MOD ](#MOD)
     3. [ Facotrial ](#Factorial)
     4. [ Choose ](#Choose)
     5. [ BinomialProbability ](#BinomialProbability)
+    6. [ Standard_Deviation ](#Standard_Deviation)
+    7. [ PDF ](#PDF)
+    8. [LinSpace](#LinSpace)
+    9. [MinMax](#MinMax)
+    10. [Mean](#Mean)
+    11. [Median](#Median)
+    12. [Mode](#Mode)
 # Math <a name="Math"></a>
  Various Math functions and classes that one might want to use. This "Library" is made mostly for fun other than to be actually used.
 
@@ -64,33 +70,7 @@ You can pass a number and a square is drawn with the size that you passed and se
 ### Draw.Point(*points) <a name="Draw.Point"></a>
 You can pass an infinite amount of objects of the class Vector2 and visualize them in matplotlib.
 
-## Statistics(List) <a name="Statistics"></a>
-self.items = List
 
-self.Mean = self.__mean()
-
-self.Median = self.__median()
-
-self.Mode = self.__mode()
-
-self.StandardDeviation = self.__standard_dev()
-
-self.Min,self.Max = self.__MinMax()
-
-self.plt = plt
-
-self.fig = self.plt.figure()
-
-self.ax1 = self.fig.add_subplot(2,1,1)
-
-self.ax2 = self.fig.add_subplot(2,1,2)
-
-### Statistics.Graph()
-Displays a graph that includes some statistical data of the list.
-
-The user can customize further and show the graph by using the "Statistics.fig", "Statistics.ax1" and "Statistics.ax2" attributes.
-
-use -> Statistics.plt.show() to display the graph if you haven't imported matplotlib.
 # Functions <a name="Functions"></a>
 ### Sum(i,n,func) <a name="Sum"></a>
 It works just like the Σ in maths.
@@ -116,3 +96,31 @@ The number of trials, denoted by 'n'.
 The probability of success on each trial, denoted by 'p'.
 
 The desired number of successes, denoted by 'x'.
+
+### Standard_Deviation(x) <a name="Standard_Deviation"></a>
+
+Returns the standard deviation of a data set.
+
+### PDF(x,m,std) <a name="PDF"></a>
+
+Probability distribution function.
+
+### LinSpace(a,b,points) <a name="LinSpace"></a>
+
+Takes a range "a","b" and returns a tuple of all the values between said range that are split to the nuber of "points"
+
+### MinMax(a,b,points) <a name="MinMax"></a>
+
+Returns the minimum and maximum value of a list. 
+
+### Mean(x) <a name="Mean"></a>
+
+Returns the average of a list.
+
+### Median(x) <a name="Median"></a>
+
+Returns the middle value of a list.
+
+### Mode(x) <a name="Mode"></a>
+
+Returns the most common value of a list.

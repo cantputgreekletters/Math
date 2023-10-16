@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
-
+from math import pi,exp
+e = exp(1)
+del exp
 #CLASSES
 class Vector2:
     def __init__(self,x:float,y:float) -> None:
@@ -26,6 +28,9 @@ class Vector2:
             return Vector2(self.x * other.x,self.y * other.y)
         else:
             return Vector2(self.x * other,self.y * other)
+    
+    def __eq__(self,other):
+        return self.x == other.x and self.y == other.y
     ################################################################
 
     def __str__(self) -> str:
@@ -109,7 +114,8 @@ class Draw:
         l4 = line(v4,v1)
         self.Line(l1,l2,l3,l4)
 
-class Statistics:
+#Should remake
+class StatisticsChart:
     def __init__(self,List) -> None:
         self.items = List
         self.Mean = self.__mean()
@@ -125,61 +131,7 @@ class Statistics:
     def __str__(self) -> str:
         return f"Mean: {self.Mean}\nMedian: {self.Median}\nMode: {self.Mode}\nStandard Deviation: {self.StandardDeviation}\nMin: {self.Min}\nMax: {self.Max}"
 
-    def __MinMax(self):
-        min = self.items[0]
-        max = self.items[0]
-        for i in self.items:
-            if i > max:
-                max = i
-            if i < min:
-                min = i
-        return min,max
-
-    def __mean(self,List = None):
-        if List == None: List = self.items
-        s = 0
-        for item in List:
-            s += item
-        return s / len(List)
-
-    def __median(self,List = None):
-        if List == None: List = self.items
-        NewList = list(List)
-        NewList.sort()
-        if (len(NewList)) % 2 == 0:
-            L1 = NewList[int((len(NewList)) / 2)]
-            L2 = NewList[int((len(NewList) - 2 ) / 2)]
-            return self.__mean((L1,L2))
-        else:
-            return (NewList[int((len(NewList) - 1) / 2)])
-        
-    def __mode(self,List = None):
-        if List == None: List = self.items
-        unique = []
-        unique = [i for i in List if i not in unique]
-        unique.sort()
-        unique_q = [0 for _ in range(len(unique))]
-        Index = -1
-        for i in unique:
-            Index += 1
-            for j in List:
-                if i == j:
-                    unique_q[Index] += 1
-        Index = -1
-        Saved_Index = 0
-        for i in unique_q:
-            Index += 1
-            if i > unique_q[Saved_Index]:
-                Saved_Index = Index
-        return unique[Saved_Index]
-
-    def __standard_dev(self,List = None):
-        if List == None: List = self.items
-        av = self.__mean(List)
-        dev = []
-        for i in List:
-            dev.append((i - av)**2)
-        return (self.__mean(dev)) ** (1/2)
+    
 
     def Graph(self):
         x = ["Mean","Median","Mode","Standard Deviation"]
@@ -198,6 +150,90 @@ class Statistics:
         self.ax2.axhline(y=self.Mean,linestyle = ':',label = "Mean",color = 'black')
         #Needs Fixing
         self.ax2.legend(bbox_to_anchor = (1.0, 1), loc = 'upper center')
+
+"""
+retry another time from start
+class Matrix:
+    def __init__(self,content) -> None:
+        self.content = content
+        self.rows = len(content)
+        self.collumns = len(content[0])
+        #check if all rows have the same length
+        self.__check_row_length()
+    
+    def __check_row_length(self):
+        row_length = self.collumns
+        for row in self.content:
+            if len(row) != row_length: raise Exception("Row lengths don't match")
+
+    def __scalar_mult(self,other):
+        columns = []
+        for i in range(self.rows):
+            row = []
+            for j in range(self.collumns):
+                row.append(self.content[i][j] * other)
+            columns.append(row)
+        return Matrix(columns)
+    
+    def __matrix_mult(self,other):
+        columns = []
+        for i in range(self.rows):
+            row = []
+            for j in range(self.collumns):
+                row.append(self.content[i][j] * other.content[i][j])
+            columns.append(row)
+        return Matrix(columns)
+
+    def __matrix_mult2(self,other):
+        #Brain hurt
+        pass
+    
+    #Needs update
+    def __str__(self) -> str:
+        text = ''
+        Index = 0
+        for row in self.content:
+            Index += 1
+            text += str(row) + "\n"
+        return text.replace
+    
+    def __repr__(self) -> str:
+        return f'{self.content}'
+
+    def __add__(self,other):
+        if self.collumns != other.collumns or self.rows != other.rows:
+            raise Exception("Can't add matrixes if they don't have the same number of rows and collumns")
+        columns = []
+        for i in range(self.rows):
+            row = []
+            for j in range(self.collumns):
+                row.append(self.content[i][j] + other.content[i][j])
+            columns.append(row)
+        return Matrix(columns)
+    
+    def __mul__(self,other):
+        if type(other) == Matrix:
+            if self.collumns == other.collumns or self.rows == other.rows:
+                return self.__matrix_mult(other)
+            elif self.collumns == other.rows:
+                return self.__matrix_mult2(other)
+            else:
+                raise Exception("Cannot do matrix multiplication")
+        else:
+            return self.__scalar_mult(other)
+    
+    def AddRow(self,row):
+        self.content.append(row)
+        self.__check_row_length()
+    
+    def AddCollumn(self,collumn):
+        self.rows += 1
+        Index = -1
+        for i in collumn:
+            Index += 1
+            self.content[Index].append(i)"""
+
+
 ########################################################################
 #Functions
 def Sum(i:int,n:int,func):
@@ -212,7 +248,7 @@ def Factorial(n):
     for i in range (1,n+1):
         fact *= i
     return fact
-    
+ 
 
 def Choose(n,k):
     """Returns the binomial coefficient of n and k"""
@@ -230,8 +266,86 @@ def BinomialProbability(n,x,p):
     """
     return (Choose(n,x)) * (p**x) * ((1 - p)**(n - x))
 
+def PDF(x,mean,std):
+    L = []
+    for xn in x:
+        e_power = (-(xn-mean)**2)/ (2*std**2)
+        value = e**e_power / (std * (2 * pi)**(1/2))
+        L.append(value)
+    return tuple(L)
+
+def LinSpace(a,b,points):
+    L = []
+    x = b-a
+    mult = x / (points - 1)
+    for i in range(points):
+        L.append(a + mult * i)
+    return tuple(L)
+
+def MinMax(x : list | tuple) -> (0,0):
+    min = x[0]
+    max = x[0]
+    for i in x:
+        if i > max:
+            max = i
+        if i < min:
+            min = i
+    return min,max
+
+def Mean(x : list | tuple):
+    
+    s = 0
+    for item in x:
+        s += item
+    return s / len(x)
+
+def Median(x : list | tuple):
+    
+    NewList = list(x)
+    NewList.sort()
+    if (len(NewList)) % 2 == 0:
+        L1 = NewList[int((len(NewList)) / 2)]
+        L2 = NewList[int((len(NewList) - 2 ) / 2)]
+        return Mean((L1,L2))
+    else:
+        return (NewList[int((len(NewList) - 1) / 2)])
+    
+def Mode(x : list | tuple):
+    
+    unique = []
+    unique = [i for i in x if i not in unique]
+    unique.sort()
+    unique_q = [0 for _ in range(len(unique))]
+    Index = -1
+    for i in unique:
+        Index += 1
+        for j in x:
+            if i == j:
+                unique_q[Index] += 1
+    Index = -1
+    Saved_Index = 0
+    for i in unique_q:
+        Index += 1
+        if i > unique_q[Saved_Index]:
+            Saved_Index = Index
+    return unique[Saved_Index]
+
+def Standard_Deviation(x : list | tuple):
+    
+    av = Mean(x)
+    dev = []
+    for i in x:
+        dev.append((i - av)**2)
+    return (Mean(dev)) ** (1/2)
+
+"""def Percetile(self,x : list | tuple):
+    idx = 0
+    for item in self.items:
+        if item < x: idx += 1
+    return idx * 100 / len(self.items) """
+
 """
-Python already has MOD "%" :)
+Python already has MOD "%" :=)
 def MOD(Dividend,Divisor):
     if Divisor == 0:
         raise ZeroDivisionError("division by zero")
@@ -243,12 +357,8 @@ def MOD(Dividend,Divisor):
         return MOD(Dividend,Divisor * -1) * -1
     return Dividend - Divisor * (Dividend // Divisor)
 """
+#Main
 #This is here for testing
 if __name__ == "__main__":
-    v1 = Vector2(10,5)
-    l1 = line(v1)
-    d = Draw()
-    d.Line(l1)
-    d.Plot.show()
-    print(l1 + l1)
+    pass
 ########################################################################
